@@ -1,0 +1,328 @@
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+  LinearProgress,
+  InputAdornment,
+  IconButton,
+  Grid,
+} from "@mui/material";
+import {
+  Visibility,
+  VisibilityOff,
+  Person,
+  Email,
+  Business,
+} from "@mui/icons-material";
+
+function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+
+  const handlePasswordChange = (event) => {
+    setPasswordStrength(event.target.value.length * 10);
+  };
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        backgroundColor: "white",
+        overflowX: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+        }}
+      >
+        <Box
+          component="header"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderBottom: "1px solid #f0f2f5",
+            px: 5,
+            py: 2,
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+              color: "#111518",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: "bold", letterSpacing: "-0.015em" }}
+            >
+              WebData
+            </Typography>
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", flex: 1, justifyContent: "center", py: 5 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "512px",
+              maxWidth: "960px",
+              py: 5,
+            }}
+          >
+            <Box
+              sx={{ display: "flex", flexDirection: "column", gap: 3, p: 4 }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: 6,
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "medium", color: "#111518" }}
+                >
+                  Step 2/8
+                </Typography>
+              </Box>
+              <Box sx={{ backgroundColor: "#dbe1e6", borderRadius: 1 }}>
+                <Box
+                  sx={{
+                    height: 8,
+                    backgroundColor: "#111518",
+                    borderRadius: 1,
+                    width: "20%",
+                  }}
+                ></Box>
+              </Box>
+            </Box>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: "bold",
+                textAlign: "center",
+                color: "#111518",
+                py: 3,
+              }}
+            >
+              Create your account
+            </Typography>
+            <Box sx={{ maxWidth: "480px", px: 4, py: 3 }}>
+              <TextField
+                placeholder="Username"
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Person />
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 2,
+                    borderColor: "#dbe1e6",
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "#111518",
+                    p: "15px",
+                    fontSize: "1rem",
+                  },
+                }}
+              />
+            </Box>
+            <Box sx={{ maxWidth: "480px", px: 4, py: 3 }}>
+              <TextField
+                placeholder="Email address"
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Email />
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 2,
+                    borderColor: "#dbe1e6",
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "#111518",
+                    p: "15px",
+                    fontSize: "1rem",
+                  },
+                }}
+              />
+            </Box>
+            <Box sx={{ maxWidth: "480px", px: 4, py: 3 }}>
+              <TextField
+                placeholder="Password"
+                fullWidth
+                type={showPassword ? "text" : "password"}
+                onChange={handlePasswordChange}
+                margin="normal"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleClickShowPassword} edge="end">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 2,
+                    borderColor: "#dbe1e6",
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "#111518",
+                    p: "15px",
+                    fontSize: "1rem",
+                  },
+                }}
+              />
+            </Box>
+            <Typography variant="body2" sx={{ color: "#60778a", py: 1, px: 4 }}>
+              Password strength:{" "}
+              {passwordStrength <= 33
+                ? "Weak"
+                : passwordStrength <= 66
+                ? "Medium"
+                : "Strong"}
+            </Typography>
+            <Box sx={{ maxWidth: "480px", px: 4, py: 3 }}>
+              <TextField
+                placeholder="Confirm password"
+                fullWidth
+                type={showPassword ? "text" : "password"}
+                margin="normal"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={handleClickShowPassword} edge="end">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 2,
+                    borderColor: "#dbe1e6",
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "#111518",
+                    p: "15px",
+                    fontSize: "1rem",
+                  },
+                }}
+              />
+            </Box>
+            <Box sx={{ maxWidth: "480px", px: 4, py: 3 }}>
+              <TextField
+                placeholder="Organisation (optional)"
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Business />
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 2,
+                    borderColor: "#dbe1e6",
+                  },
+                  "& .MuiInputBase-input": {
+                    color: "#111518",
+                    p: "15px",
+                    fontSize: "1rem",
+                  },
+                }}
+              />
+            </Box>
+            <Box sx={{ px: 4 }}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    sx={{
+                      color: "#dbe1e6",
+                      "&.Mui-checked": {
+                        color: "#2094f3",
+                      },
+                    }}
+                  />
+                }
+                label="Yes, I would like to receive marketing communication from WebData."
+                sx={{ color: "#111518" }}
+              />
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          component="footer"
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              maxWidth: "960px",
+              width: "100%",
+              flexDirection: "column",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                px: 4,
+                py: 3,
+              }}
+            >
+              <Button
+                variant="contained"
+                sx={{
+                  minWidth: "84px",
+                  maxWidth: "480px",
+                  bgcolor: "#2094f3",
+                  color: "white",
+                  fontWeight: "bold",
+                  borderRadius: 2,
+                  px: 4,
+                  "&:hover": {
+                    bgcolor: "#1976d2",
+                  },
+                }}
+              >
+                Next
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+export default SignupForm;
